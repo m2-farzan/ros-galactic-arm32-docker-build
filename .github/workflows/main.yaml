@@ -1,0 +1,45 @@
+
+name: Build and Push
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    services:
+      registry:
+        image: registry:2
+        ports:
+          - 5000:5000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver-opts: network=host
+
+      - name: Login to DockerHub
+        if: success() && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v1
+        with:
+          username: cakerobotics
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile
+          platforms: linux/arm/v7
+          push: true
+          tags: cakerobotics/ros:galactic-ros-base-focal
+
