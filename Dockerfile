@@ -15,7 +15,7 @@ WORKDIR /root/cmake-3.23.1
 
 RUN chmod +x bootstrap && \
     ./bootstrap && \
-    make &&
+    make && \
     make install
 
 RUN apt remove p7zip-full
