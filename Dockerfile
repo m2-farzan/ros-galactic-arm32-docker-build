@@ -81,5 +81,5 @@ FROM common
 
 RUN rosdep install --dependency-types exec --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-5.3.1 urdfdom_headers"
 
-COPY --from=builder /opt/ros/galactic /opt/ros/galactic
+COPY --from=build /opt/ros/galactic /opt/ros/galactic
 
