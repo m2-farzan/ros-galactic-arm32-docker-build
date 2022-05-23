@@ -39,7 +39,7 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          platforms: linux/amd64
+          platforms: linux/arm
           push: true
           tags: cakerobotics/ros:galactic-ros-base-focal
 
