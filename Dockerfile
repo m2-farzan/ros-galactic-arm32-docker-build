@@ -4,6 +4,8 @@ RUN apt update && \
     apt upgrade -y && \
     apt install -y wget cmake g++ p7zip-full
 
+RUN c_rehash /etc/ssl/certs
+
 WORKDIR /root
 
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1.tar.gz && \
@@ -25,8 +27,6 @@ RUN apt install -y locales && \
     update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 ENV LANG=en_US.UTF-8
-
-RUN c_rehash /etc/ssl/certs
 
 RUN apt install -y curl gnupg lsb-release && \
     curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
