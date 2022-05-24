@@ -2,7 +2,7 @@ FROM ubuntu:20.04 AS common
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y wget g++ make libssl-dev
+    apt install -y wget g++ make cmake libacl1-dev libssl-dev
 
 RUN c_rehash /etc/ssl/certs
 
