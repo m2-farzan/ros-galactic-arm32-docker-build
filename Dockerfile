@@ -10,7 +10,8 @@ WORKDIR /root
 
 RUN wget https://mfarzan.ir/cmake-bin.tar.gz && \
     tar -xzvf cmake-bin.tar.gz && \
-    cd cmake-bin && \
+    mv /root/cmake-bin /root/cmake-3.23.1 && \
+    cd cmake-3.23.1 && \
     make install && \
     rm /root/cmake-*
 
