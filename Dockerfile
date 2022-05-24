@@ -2,7 +2,7 @@ FROM ubuntu:20.04 AS common
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y wget cmake g++ p7zip-full
+    apt install -y wget cmake g++ p7zip-full libssl-dev
 
 RUN c_rehash /etc/ssl/certs
 
