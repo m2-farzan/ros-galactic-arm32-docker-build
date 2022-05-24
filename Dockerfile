@@ -13,7 +13,7 @@ RUN wget https://mfarzan.ir/cmake-bin.tar.gz && \
     mv /root/cmake-bin /root/cmake-3.23.1 && \
     cd cmake-3.23.1 && \
     make install && \
-    rm /root/cmake-*
+    rm -rf /root/cmake-*
 
 RUN apt install -y locales && \
     locale-gen en_US en_US.UTF-8 && \
