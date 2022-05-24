@@ -2,25 +2,17 @@ FROM ubuntu:20.04 AS common
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y wget cmake g++ p7zip-full libssl-dev
+    apt install -y wget g++ make libssl-dev
 
 RUN c_rehash /etc/ssl/certs
 
 WORKDIR /root
 
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1.tar.gz && \
-    7z x cmake-3.23.1.tar.gz && \
-    7z x cmake-3.23.1.tar && \
-    rm cmake-3.23.1.tar*
-
-WORKDIR /root/cmake-3.23.1
-
-RUN chmod +x bootstrap && \
-    ./bootstrap && \
-    make && \
-    make install
-
-RUN apt remove p7zip-full
+RUN wget https://mfarzan.ir/cmake-bin.tar.gz && \
+    tar -xzvf cmake-bin.tar.gz && \
+    cd cmake-bin && \
+    make install && \
+    rm /root/cmake-*
 
 RUN apt install -y locales && \
     locale-gen en_US en_US.UTF-8 && \
