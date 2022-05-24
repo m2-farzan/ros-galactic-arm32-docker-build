@@ -42,4 +42,6 @@ jobs:
           platforms: linux/arm
           push: true
           tags: cakerobotics/ros:galactic-ros-base-focal
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
